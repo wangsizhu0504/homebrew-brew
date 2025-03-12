@@ -4,6 +4,7 @@
 class Nvc < Formula
   desc "A self-contained version control tool for Node.JS"
   homepage "https://github.com/wangsizhu0504/nvc"
+  version "0.2.0"
 
   livecheck do
     url "https://github.com/wangsizhu0504/nvc/releases/latest"
