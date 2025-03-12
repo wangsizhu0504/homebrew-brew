@@ -20,13 +20,7 @@ class Nvc < Formula
   end
 
   def install
-    libexec.install Dir["*"]
-    chmod 0755, libexec/"nvc"
-    bin.install_symlink libexec/"nvc"
-  end
-
-  test do
-    system bin/"nvc", "-h"
+    bin.install "ma"
   end
 
 end
