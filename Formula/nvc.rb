@@ -4,11 +4,29 @@
 class Nvc < Formula
   desc "A self-contained version control tool for Node.JS"
   homepage "https://github.com/wangsizhu0504/nvc"
-  url "https://github.com/wangsizhu0504/nvc/releases/download/v0.2.0/nvc-macos.zip"
-  sha256 "4796d416e70f3399f1a6c84fcc47dcf97152ab8b78f341b6eb7554b87ac3a4e9"
-  version "0.2.0"
+
+  livecheck do
+    url "https://github.com/wangsizhu0504/nvc/releases/latest"
+    regex(/^(\d{4}-\d{2}-\d{2})$/i)
+    strategy :github_latest
+  end
+
+  on_macos do
+    url "https://github.com/wangsizhu0504/nvc/releases/latest/download/nvc-macos.zip"
+  end
+
+  on_linux do
+    url "https://github.com/wangsizhu0504/nvc/releases/latest/download/nvc-linux.zip"
+  end
 
   def install
-    bin.install "nvc"
+    libexec.install Dir["*"]
+    chmod 0755, libexec/"nvc"
+    bin.install_symlink libexec/"nvc"
   end
+
+  test do
+    system bin/"nvc", "-h"
+  end
+
 end
